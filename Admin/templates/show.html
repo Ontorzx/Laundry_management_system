@@ -1,0 +1,30 @@
+
+
+
+
+<body>
+{% block content %}
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Adderss</th>
+        <th>Contact</th>
+        <th>delivary_date</th>
+    </tr>
+    {% for i in Customer %}
+    <tr>
+        <td>{{i.C_id}}</td>
+        <td>{{i.C_name}}</td>
+        <td>{{i.C_email}}</td>
+        <td>{{i.C_address}}</td>
+        <td>{{i.C_contact}}</td>
+        <td>{{i.delivary_date}}</td>
+        <!--<td><a href="/edit/{{ i.id }}">Edit</a></td>
+        <td><a href="/delete/{{ i.id }}">delete</a></td> -->
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+</body>
