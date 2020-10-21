@@ -20,6 +20,19 @@ def add_show(request):
 
     return render(request,'enroll/add_and_show.html',context)
 
+def update_data(request,id):
+    if request.method=="POST":
+        pi=User.objects.get(pk=id)
+        details=CustomerDetails(request.POST, instance=pi)
+        if details.is_valid():
+            details.save()
+            return HttpResponseRedirect('/')
+    else:
+        pi=User.objects.get(pk=id)
+        details=CustomerDetails(instance=pi)
+   
+    return render(request,'enroll/update.html',{'details':details})
+
 def delete_data(request,id):
     if request.method=="POST":
         pi=User.objects.get(pk=id)
