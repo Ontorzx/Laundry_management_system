@@ -21,23 +21,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+                {% for p in pi %}
                     <tr>
-                    <th scope="row">{{pi.id}}</th>
-                    <td>{{pi.name}}</td>
-                    <td>{{pi.email}}</td>
-                    <td>{{pi.Address}}</td>
-                    <td>{{pi.contact}}</td> 
-                    <td>{{pi.Delivery_date}}</td>
+                    <th scope="row">{{p.id}}</th>
+                    <td>{{p.name}}</td>
+                    <td>{{p.email}}</td>
+                    <td>{{p.Address}}</td>
+                    <td>{{p.contact}}</td> 
+                    <td>{{p.Delivery_date}}</td>
                     <td>
-                    <a href="{% url 'update_data'  %}" class="btn btn-warning ">Edit</a>
-                    <form action="{% url 'delete_data'  %}" method="post" class="d-inline">
+                    <a href="{% url 'update_data' id=p.id  %}" class="btn btn-warning ">Edit</a>
+                    <form action="{% url 'delete_data' id=p.id %}" method="post" class="d-inline">
                     {% csrf_token %}
                     <input type="submit" class ="btn btn-danger" value="Delete"> 
                     </form>
                     </td>
                     
                     </tr>
+                    {% endfor %}
 
                         
                    

@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponseRedirect
 from .forms import CustomerDetails
 from enroll.models import User
 from django.contrib import messages
+from django.http import HttpResponse
 # Create your views here.
 
 #Add the data through table
@@ -73,5 +74,7 @@ def search(request):
     if request.method=="POST":
         search_name=request.POST['name']
         pi=User.objects.filter(name__iexact=search_name)
-        return render(request,'enroll/search_details.html',{'pi':pi})
+        return render(request,'enroll/search_details.html',{'pi':pi}) 
+
+
 
