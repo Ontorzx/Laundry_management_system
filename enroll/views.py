@@ -3,6 +3,8 @@ from .forms import CustomerDetails
 from enroll.models import User
 # Create your views here.
 
+#Add the data through table
+
 def add(request):
     if request.method == "POST":
         details=CustomerDetails(request.POST)
@@ -20,6 +22,8 @@ def add(request):
         
 
     return render(request,'enroll/add_customer.html',context)
+
+#for show Customer Details
 
 def add_show(request):
     if request.method == "POST":
@@ -39,6 +43,8 @@ def add_show(request):
 
     return render(request,'enroll/add_and_show.html',context)
 
+#for Update operation of the Customer Details
+
 def update_data(request,id):
     if request.method=="POST":
         pi=User.objects.get(pk=id)
@@ -52,9 +58,17 @@ def update_data(request,id):
    
     return render(request,'enroll/update.html',{'details':details})
 
+#For delete operation of customer details
+
 def delete_data(request,id):
     if request.method=="POST":
         pi=User.objects.get(pk=id)
         pi.delete()
         return HttpResponseRedirect('/')
+
+def search(request):
+    if request.method=="POST":
+        search_name=request.POST['name']
+        pi=User.objects.filter(name=search_name)
+        return render(request,'enroll/search_details.html',{'pi':pi})
 

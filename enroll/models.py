@@ -6,4 +6,4 @@ class User(models.Model):
     email=models.EmailField(max_length=50)
     Address=models.CharField(max_length=50)
     contact=models.CharField(max_length=50)
-    Delivery_date=models.DateTimeField()
+    Delivery_date=models.DateField(null=True, blank=True)
