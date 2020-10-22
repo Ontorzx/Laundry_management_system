@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from .forms import CustomerDetails
 from enroll.models import User
+from django.contrib import messages
 # Create your views here.
 
 #Add the data through table
@@ -20,7 +21,7 @@ def add(request):
     }
 
         
-
+    
     return render(request,'enroll/add_customer.html',context)
 
 #for show Customer Details
@@ -31,6 +32,8 @@ def add_show(request):
         if details.is_valid():
             details.save()
             details=CustomerDetails()
+      
+
     else:
         details=CustomerDetails()
     show_details=User.objects.all()
@@ -39,9 +42,8 @@ def add_show(request):
         'show_details':show_details,
     }
 
-        
-
-    return render(request,'enroll/add_and_show.html',context)
+    
+    return render(request,'enroll/customer_details.html',context)
 
 #for Update operation of the Customer Details
 
@@ -64,11 +66,12 @@ def delete_data(request,id):
     if request.method=="POST":
         pi=User.objects.get(pk=id)
         pi.delete()
+        messages.warning(request, 'Delete Customer Details Successfully.')
         return HttpResponseRedirect('/')
 
 def search(request):
     if request.method=="POST":
         search_name=request.POST['name']
-        pi=User.objects.filter(name=search_name)
+        pi=User.objects.filter(name__iexact=search_name)
         return render(request,'enroll/search_details.html',{'pi':pi})
 

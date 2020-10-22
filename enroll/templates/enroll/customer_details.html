@@ -5,6 +5,12 @@
 
 <div class="row">
 
+
+       {%if messages %} {% for message in messages %}
+             <div class=" text-center alert alert-{{ message.tags }}" role="alert">
+                 {{message}}
+             </div>
+             {% endfor %} {% endif %}
     <div class="col-sm-10 offset-1">
         <h4 class="mt-sm-5 text-center alert alert-info">Customer Details:</h4>
         {% if show_details %}
